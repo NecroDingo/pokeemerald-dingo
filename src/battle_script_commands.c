@@ -1343,19 +1343,18 @@ static void Cmd_attackcanceler(void)
         && !gBattleStruct->bouncedMoveIsUsed)
     {
         gBattleStruct->bouncedMoveIsUsed = TRUE;
-        gBattleCommunication[MULTISTRING_CHOOSER] = 0;
         // Edge case for bouncing a powder move against a grass type pokemon.
         SetAtkCancellerForCalledMove();
         if (BlocksPrankster(gCurrentMove, gBattlerTarget, gBattlerAttacker, TRUE))
         {
             // Opponent used a prankster'd magic coat -> reflected status move should fail against a dark-type attacker
             gBattlerTarget = gBattlerAttacker;
-            gBattlescriptCurrInstr = BattleScript_MagicCoatBouncePrankster;
+            gBattlescriptCurrInstr = BattleScript_MagicCoatPrankster;
         }
         else
         {
             BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_MagicCoatBounce;
+            gBattlescriptCurrInstr = BattleScript_MagicCoat;
         }
         return;
     }
@@ -1378,11 +1377,10 @@ static void Cmd_attackcanceler(void)
 
         if (gBattleStruct->bouncedMoveIsUsed)
         {
-            gBattleCommunication[MULTISTRING_CHOOSER] = 1;
             // Edge case for bouncing a powder move against a grass type pokemon.
             SetAtkCancellerForCalledMove();
             BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_MagicCoatBounce;
+            gBattlescriptCurrInstr = BattleScript_MagicBounce;
             gBattlerAbility = battler;
             return;
         }
@@ -8788,7 +8786,7 @@ u32 GetHighestStatId(u32 battler)
     }
     if (gBattleMons[battler].speed > highestStat)
         highestId = STAT_SPEED;
-    
+
     return highestId;
 }
 
@@ -8997,7 +8995,7 @@ static void Cmd_various(void)
     struct Pokemon *mon;
     s32 i;
     u8 data[10];
-    u32 side, battler, bits;
+    u32 battler, bits;
 
     if (gBattleControllerExecFlags)
         return;
@@ -9306,18 +9304,6 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr = result;
             return;
         }
-        break;
-    }
-    case VARIOUS_SET_MAGIC_COAT_TARGET:
-    {
-        VARIOUS_ARGS();
-        gBattleStruct->attackerBeforeBounce = battler;
-        gBattlerAttacker = gBattlerTarget;
-        side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
-        if (IsAffectedByFollowMe(gBattlerAttacker, side, gCurrentMove))
-            gBattlerTarget = gSideTimers[side].followmeTarget;
-        else
-            gBattlerTarget = battler;
         break;
     }
     case VARIOUS_IS_RUNNING_IMPOSSIBLE:
@@ -9946,24 +9932,6 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         gBattleMoveDamage = gMovesInfo[gCurrentMove].argument;
         break;
-    }
-    case VARIOUS_TRY_HIT_SWITCH_TARGET:
-    {
-        VARIOUS_ARGS(const u8 *failInstr);
-        if (IsBattlerAlive(gBattlerAttacker)
-         && IsBattlerAlive(gBattlerTarget)
-         && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-         && TARGET_TURN_DAMAGED
-         && GetBattlerAbility(gBattlerTarget) != ABILITY_GUARD_DOG)
-        {
-            gBattleScripting.switchCase = B_SWITCH_HIT;
-            gBattlescriptCurrInstr = cmd->nextInstr;
-        }
-        else
-        {
-            gBattlescriptCurrInstr = cmd->failInstr;
-        }
-        return;
     }
     case VARIOUS_TRY_AUTOTOMIZE:
     {
@@ -17332,4 +17300,39 @@ void BS_JumpIfBlockedBySoundproof(void)
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
+}
+
+void BS_TryHitSwitchTarget(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+
+    if (IsBattlerAlive(gBattlerAttacker)
+     && IsBattlerAlive(gBattlerTarget)
+     && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+     && TARGET_TURN_DAMAGED
+     && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT
+     && GetBattlerAbility(gBattlerTarget) != ABILITY_GUARD_DOG)
+    {
+        gBattleScripting.switchCase = B_SWITCH_HIT;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+}
+
+void BS_SetMagicCoatTarget(void)
+{
+    NATIVE_ARGS();
+    u32 side;
+    gBattleStruct->attackerBeforeBounce = gBattleScripting.battler = gBattlerAttacker;
+    gBattlerAttacker = gBattlerTarget;
+    side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
+    if (IsAffectedByFollowMe(gBattlerAttacker, side, gCurrentMove))
+        gBattlerTarget = gSideTimers[side].followmeTarget;
+    else
+        gBattlerTarget = gBattleStruct->attackerBeforeBounce;
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
