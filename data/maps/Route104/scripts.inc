@@ -146,8 +146,8 @@ Route104_EventScript_MayAskToBattle::
 Route104_EventScript_BattleMay::
 	msgbox Route104_Text_MayIntro, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, Route104_EventScript_BattleMayTreecko
-	case 1, Route104_EventScript_BattleMayTorchic
+	case 0, Route104_EventScript_BattleMayBulbasaur
+	case 1, Route104_EventScript_BattleMayChimchar
 	case 2, Route104_EventScript_BattleMayMudkip
 	end
 
@@ -162,14 +162,14 @@ Route104_EventScript_RestoreMusic::
 	fadedefaultbgm
 	return
 
-Route104_EventScript_BattleMayTreecko::
-	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TREECKO, Route104_Text_MayDefeat
+Route104_EventScript_BattleMayBulbasaur::
+	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_BULBASAUR, Route104_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 	goto Route104_EventScript_MayDefeated
 	end
 
-Route104_EventScript_BattleMayTorchic::
-	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TORCHIC, Route104_Text_MayDefeat
+Route104_EventScript_BattleMayChimchar::
+	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_CHIMCHAR, Route104_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 	goto Route104_EventScript_MayDefeated
 	end
@@ -218,8 +218,8 @@ Route104_EventScript_BrendanAskToBattle::
 Route104_EventScript_BattleBrendan::
 	msgbox Route104_Text_BrendanIntro, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, Route104_EventScript_BattleBrendanTreecko
-	case 1, Route104_EventScript_BattleBrendanTorchic
+	case 0, Route104_EventScript_BattleBrendanBulbasaur
+	case 1, Route104_EventScript_BattleBrendanChimchar
 	case 2, Route104_EventScript_BattleBrendanMudkip
 	end
 
@@ -229,14 +229,14 @@ Route104_EventScript_BrendanDefeated::
 	releaseall
 	end
 
-Route104_EventScript_BattleBrendanTreecko::
-	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TREECKO, Route104_Text_BrendanDefeat
+Route104_EventScript_BattleBrendanBulbasaur::
+	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_BULBASAUR, Route104_Text_BrendanDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 	goto Route104_EventScript_BrendanDefeated
 	end
 
-Route104_EventScript_BattleBrendanTorchic::
-	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TORCHIC, Route104_Text_BrendanDefeat
+Route104_EventScript_BattleBrendanChimchar::
+	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_CHIMCHAR, Route104_Text_BrendanDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 	goto Route104_EventScript_BrendanDefeated
 	end

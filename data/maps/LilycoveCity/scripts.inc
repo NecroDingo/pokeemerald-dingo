@@ -244,8 +244,8 @@ LilycoveCity_EventScript_May::
 	goto_if_eq VAR_RESULT, NO, LilycoveCity_EventScript_DeclineMayBattle
 	msgbox LilycoveCity_Text_MayWontBeBeaten, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, LilycoveCity_EventScript_BattleMayTreecko
-	case 1, LilycoveCity_EventScript_BattleMayTorchic
+	case 0, LilycoveCity_EventScript_BattleMayBulbasaur
+	case 1, LilycoveCity_EventScript_BattleMayChimchar
 	case 2, LilycoveCity_EventScript_BattleMayMudkip
 	end
 
@@ -272,8 +272,8 @@ LilycoveCity_EventScript_Brendan::
 	goto_if_eq VAR_RESULT, NO, LilycoveCity_EventScript_DeclineBrendanBattle
 	msgbox LilycoveCity_Text_BrendanWontBeBeaten, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, LilycoveCity_EventScript_BattleBrendanTreecko
-	case 1, LilycoveCity_EventScript_BattleBrendanTorchic
+	case 0, LilycoveCity_EventScript_BattleBrendanBulbasaur
+	case 1, LilycoveCity_EventScript_BattleBrendanChimchar
 	case 2, LilycoveCity_EventScript_BattleBrendanMudkip
 	end
 
@@ -293,13 +293,13 @@ LilycoveCity_EventScript_DeclineBrendanBattle::
 	release
 	end
 
-LilycoveCity_EventScript_BattleMayTreecko::
-	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TREECKO, LilycoveCity_Text_MayDefeat
+LilycoveCity_EventScript_BattleMayBulbasaur::
+	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_BULBASAUR, LilycoveCity_Text_MayDefeat
 	goto LilycoveCity_EventScript_DefeatedMay
 	end
 
-LilycoveCity_EventScript_BattleMayTorchic::
-	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_TORCHIC, LilycoveCity_Text_MayDefeat
+LilycoveCity_EventScript_BattleMayChimchar::
+	trainerbattle_no_intro TRAINER_MAY_LILYCOVE_CHIMCHAR, LilycoveCity_Text_MayDefeat
 	goto LilycoveCity_EventScript_DefeatedMay
 	end
 
@@ -308,13 +308,13 @@ LilycoveCity_EventScript_BattleMayMudkip::
 	goto LilycoveCity_EventScript_DefeatedMay
 	end
 
-LilycoveCity_EventScript_BattleBrendanTreecko::
-	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TREECKO, LilycoveCity_Text_BrendanDefeat
+LilycoveCity_EventScript_BattleBrendanBulbasaur::
+	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_BULBASAUR, LilycoveCity_Text_BrendanDefeat
 	goto LilycoveCity_EventScript_DefeatedBrendan
 	end
 
-LilycoveCity_EventScript_BattleBrendanTorchic::
-	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TORCHIC, LilycoveCity_Text_BrendanDefeat
+LilycoveCity_EventScript_BattleBrendanChimchar::
+	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_CHIMCHAR, LilycoveCity_Text_BrendanDefeat
 	goto LilycoveCity_EventScript_DefeatedBrendan
 	end
 
