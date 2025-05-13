@@ -9510,7 +9510,7 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Treecko
+Bulbasaur
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9531,7 +9531,7 @@ Wingull
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Grovyle
+Ivysaur
 Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
@@ -9552,11 +9552,11 @@ Pelipper
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Grovyle
+Ivysaur
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-=== TRAINER_BRENDAN_ROUTE_103_TREECKO ===
+=== TRAINER_BRENDAN_ROUTE_103_BULBASAUR ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -9565,11 +9565,11 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
-Torchic
+CHIMCHAR
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_BRENDAN_ROUTE_110_TREECKO ===
+=== TRAINER_BRENDAN_ROUTE_110_BULBASAUR ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -9586,11 +9586,11 @@ Lombre
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Combusken
+Monferno
 Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-=== TRAINER_BRENDAN_ROUTE_119_TREECKO ===
+=== TRAINER_BRENDAN_ROUTE_119_BULBASAUR ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -9607,11 +9607,11 @@ Lombre
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Combusken
+Monferno
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-=== TRAINER_BRENDAN_ROUTE_103_TORCHIC ===
+=== TRAINER_BRENDAN_ROUTE_103_CHIMCHAR ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -9624,7 +9624,7 @@ Mudkip
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_BRENDAN_ROUTE_110_TORCHIC ===
+=== TRAINER_BRENDAN_ROUTE_110_CHIMCHAR ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -9645,7 +9645,7 @@ Marshtomp
 Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-=== TRAINER_BRENDAN_ROUTE_119_TORCHIC ===
+=== TRAINER_BRENDAN_ROUTE_119_CHIMCHAR ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -9675,7 +9675,7 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Treecko
+Bulbasaur
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9696,7 +9696,7 @@ Slugma
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Grovyle
+Ivysaur
 Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
@@ -9717,11 +9717,11 @@ Lombre
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Grovyle
+Ivysaur
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-=== TRAINER_MAY_ROUTE_103_TREECKO ===
+=== TRAINER_MAY_ROUTE_103_BULBASAUR ===
 Name: MAY
 Class: Rival
 Pic: May
@@ -9730,11 +9730,11 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Torchic
+CHIMCHAR
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_MAY_ROUTE_110_TREECKO ===
+=== TRAINER_MAY_ROUTE_110_BULBASAUR ===
 Name: MAY
 Class: Rival
 Pic: May
@@ -9751,11 +9751,11 @@ Lombre
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Combusken
+Monferno
 Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-=== TRAINER_MAY_ROUTE_119_TREECKO ===
+=== TRAINER_MAY_ROUTE_119_BULBASAUR ===
 Name: MAY
 Class: Rival
 Pic: May
@@ -9772,11 +9772,11 @@ Lombre
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Combusken
+Monferno
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-=== TRAINER_MAY_ROUTE_103_TORCHIC ===
+=== TRAINER_MAY_ROUTE_103_CHIMCHAR ===
 Name: MAY
 Class: Rival
 Pic: May
@@ -9789,7 +9789,7 @@ Mudkip
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_MAY_ROUTE_110_TORCHIC ===
+=== TRAINER_MAY_ROUTE_110_CHIMCHAR ===
 Name: MAY
 Class: Rival
 Pic: May
@@ -9810,7 +9810,7 @@ Marshtomp
 Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-=== TRAINER_MAY_ROUTE_119_TORCHIC ===
+=== TRAINER_MAY_ROUTE_119_CHIMCHAR ===
 Name: MAY
 Class: Rival
 Pic: May
@@ -10842,7 +10842,7 @@ Natu
 Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_BRENDAN_RUSTBORO_TREECKO ===
+=== TRAINER_BRENDAN_RUSTBORO_BULBASAUR ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -10855,7 +10855,7 @@ Lotad
 Level: 13
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Torchic
+CHIMCHAR
 Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
@@ -10872,7 +10872,7 @@ Wingull
 Level: 13
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Treecko
+Bulbasaur
 Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
@@ -10966,7 +10966,7 @@ Loudred
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_BRENDAN_RUSTBORO_TORCHIC ===
+=== TRAINER_BRENDAN_RUSTBORO_CHIMCHAR ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -10996,7 +10996,7 @@ Wingull
 Level: 13
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Treecko
+Bulbasaur
 Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
@@ -12266,11 +12266,11 @@ Pelipper
 Level: 32
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Grovyle
+Venusaur
 Level: 34
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
-=== TRAINER_BRENDAN_LILYCOVE_TREECKO ===
+=== TRAINER_BRENDAN_LILYCOVE_BULBASAUR ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -12291,11 +12291,11 @@ Ludicolo
 Level: 32
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Combusken
+Monferno
 Level: 34
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
-=== TRAINER_BRENDAN_LILYCOVE_TORCHIC ===
+=== TRAINER_BRENDAN_LILYCOVE_CHIMCHAR ===
 Name: BRENDAN
 Class: Rival
 Pic: Brendan
@@ -12341,11 +12341,11 @@ Pelipper
 Level: 32
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Grovyle
+Venusaur
 Level: 34
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
-=== TRAINER_MAY_LILYCOVE_TREECKO ===
+=== TRAINER_MAY_LILYCOVE_BULBASAUR ===
 Name: MAY
 Class: Rival
 Pic: May
@@ -12366,11 +12366,11 @@ Ludicolo
 Level: 32
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Combusken
+Monferno
 Level: 34
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
-=== TRAINER_MAY_LILYCOVE_TORCHIC ===
+=== TRAINER_MAY_LILYCOVE_CHIMCHAR ===
 Name: MAY
 Class: Rival
 Pic: May
@@ -14119,7 +14119,7 @@ Vigoroth
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-=== TRAINER_MAY_RUSTBORO_TREECKO ===
+=== TRAINER_MAY_RUSTBORO_BULBASAUR ===
 Name: MAY
 Class: Rival
 Pic: May
@@ -14132,11 +14132,11 @@ Lotad
 Level: 13
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Torchic
+CHIMCHAR
 Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-=== TRAINER_MAY_RUSTBORO_TORCHIC ===
+=== TRAINER_MAY_RUSTBORO_CHIMCHAR ===
 Name: MAY
 Class: Rival
 Pic: May
