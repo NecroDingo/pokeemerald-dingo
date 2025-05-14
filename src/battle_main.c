@@ -74,6 +74,8 @@
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "cable_club.h"
+#include "wild_encounter.h"
+#include "caps.h"
 
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
@@ -1853,6 +1855,38 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
+static u8 ChooseTrainerMonLevel(const struct TrainerMon *trainerMon, u8 monIndex)
+{
+    u8 avgLevel = GetAveragePartyLevel();
+    u8 highestLevel = GetHighestPartyLevel();
+    u8 wildMin = 2, wildMax = 100;
+    u8 minLevel, maxLevel;
+    u32 levelCap = GetCurrentLevelCap();
+    u8 x = 2; // Trainers can't be more than 2 below your highest
+
+    minLevel = avgLevel > 1 ? avgLevel - 1 : wildMin;
+    if (highestLevel <= 10)
+        maxLevel = avgLevel + 0;
+    else
+        maxLevel = avgLevel + 3;
+
+    u8 minAllowed = highestLevel > x ? highestLevel - x : wildMin;
+    if (minLevel < minAllowed)
+        minLevel = minAllowed;
+
+    if (minLevel < wildMin)
+        minLevel = wildMin;
+    if (maxLevel > wildMax)
+        maxLevel = wildMax;
+    if (maxLevel > levelCap)
+        maxLevel = levelCap;
+    if (minLevel > maxLevel)
+        minLevel = maxLevel;
+
+    u8 trainerLevel = minLevel + (Random() % (maxLevel - minLevel + 1));
+    return trainerLevel;
+}
+
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
 {
     u32 personalityValue;
@@ -1910,7 +1944,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 otIdType = OT_ID_PRESET;
                 fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
-            CreateMon(&party[i], partyData[monIndex].species, partyData[monIndex].lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
+            u8 scaledLevel;
+            if (trainer->trainerClass != TRAINER_CLASS_LEADER)
+                scaledLevel = ChooseTrainerMonLevel(&partyData[monIndex], monIndex);
+            else
+            scaledLevel = GetCurrentLevelCap();
+            CreateMon(&party[i], partyData[monIndex].species, scaledLevel, 0, TRUE, personalityValue, otIdType, fixedOtId);
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);

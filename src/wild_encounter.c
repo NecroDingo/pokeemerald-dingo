@@ -23,6 +23,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/weather.h"
+#include "caps.h"
 
 extern const u8 EventScript_SprayWoreOff[];
 
@@ -55,7 +56,6 @@ static void UpdateChainFishingStreak();
 static bool8 IsWildLevelAllowedByRepel(u8 level);
 static void ApplyFluteEncounterRateMod(u32 *encRate);
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate);
-static u8 GetMaxLevelOfSpeciesInWildTable(const struct WildPokemon *wildMon, u16 species, u8 area);
 #ifdef BUGFIX
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, u8 type, u16 ability, u8 *monIndex, u32 size);
 #else
@@ -305,53 +305,76 @@ static u8 ChooseWildMonIndex_Fishing(u8 rod)
     return wildMonIndex;
 }
 
-static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIndex, u8 area)
+u8 GetAveragePartyLevel(void)
 {
-    u8 min;
-    u8 max;
-    u8 range;
-    u8 rand;
-
-    if (LURE_STEP_COUNT == 0)
+    u8 i, count = 0, totalLevel = 0;
+    for (i = 0; i < PARTY_SIZE; i++)
     {
-        // Make sure minimum level is less than maximum level
-        if (wildPokemon[wildMonIndex].maxLevel >= wildPokemon[wildMonIndex].minLevel)
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
         {
-            min = wildPokemon[wildMonIndex].minLevel;
-            max = wildPokemon[wildMonIndex].maxLevel;
-        }
-        else
-        {
-            min = wildPokemon[wildMonIndex].maxLevel;
-            max = wildPokemon[wildMonIndex].minLevel;
-        }
-        range = max - min + 1;
-        rand = Random() % range;
-
-        // check ability for max level mon
-        if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
-        {
-            u16 ability = GetMonAbility(&gPlayerParty[0]);
-            if (ability == ABILITY_HUSTLE || ability == ABILITY_VITAL_SPIRIT || ability == ABILITY_PRESSURE)
+            u8 level = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
+            if (level > 0)
             {
-                if (Random() % 2 == 0)
-                    return max;
-
-                if (rand != 0)
-                    rand--;
+                totalLevel += level;
+                count++;
             }
         }
-        return min + rand;
     }
-    else
+    if (count == 0)
+        return 2; // Failsafe: minimum wild level
+    return (totalLevel + count / 2) / count; // Rounded average
+}
+
+u8 GetHighestPartyLevel(void)
+{
+    u8 i, highest = 0;
+    for (i = 0; i < PARTY_SIZE; i++)
     {
-        // Looks for the max level of all slots that share the same species as the selected slot.
-        max = GetMaxLevelOfSpeciesInWildTable(wildPokemon, wildPokemon[wildMonIndex].species, area);
-        if (max > 0)
-            return max + 1;
-        else // Failsafe
-            return wildPokemon[wildMonIndex].maxLevel + 1;
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
+        {
+            u8 level = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
+            if (level > highest)
+                highest = level;
+        }
     }
+    return highest;
+}
+
+static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIndex, u8 area)
+{
+    u8 avgLevel = GetAveragePartyLevel();
+    u8 highestLevel = GetHighestPartyLevel();
+    u8 wildMin = 2, wildMax = 100;
+    u8 minLevel, maxLevel;
+    u32 levelCap = GetCurrentLevelCap();
+    u8 x = 2; // Wilds can't be more than 2 below your highest
+
+    // Main scaling logic
+    minLevel = avgLevel > 1 ? avgLevel - 1 : wildMin;
+        if (highestLevel <= 10) 
+        {
+        maxLevel = avgLevel + 0;
+        minLevel = avgLevel - 2;} 
+        else {
+        maxLevel = avgLevel + 3;
+        }
+    // Enforce the "not more than X below highest" rule
+    u8 minAllowed = highestLevel > x ? highestLevel - x : wildMin;
+    if (minLevel < minAllowed)
+        minLevel = minAllowed;
+
+    // Clamp to absolute bounds and level cap
+    if (minLevel < wildMin)
+        minLevel = wildMin;
+    if (maxLevel > wildMax)
+        maxLevel = wildMax;
+    if (maxLevel > levelCap)
+        maxLevel = levelCap;
+    if (minLevel > maxLevel)
+        minLevel = maxLevel;
+
+    u8 wildLevel = minLevel + (Random() % (maxLevel - minLevel + 1));
+    return wildLevel;
 }
 
 u16 GetCurrentMapWildMonHeaderId(void)
@@ -1052,32 +1075,6 @@ static bool8 TryGetRandomWildMonIndexByType(const struct WildPokemon *wildMon, u
 }
 
 #include "data.h"
-
-static u8 GetMaxLevelOfSpeciesInWildTable(const struct WildPokemon *wildMon, u16 species, u8 area)
-{
-    u8 i, maxLevel = 0, numMon = 0;
-
-    switch (area)
-    {
-    case WILD_AREA_LAND:
-        numMon = LAND_WILD_COUNT;
-        break;
-    case WILD_AREA_WATER:
-        numMon = WATER_WILD_COUNT;
-        break;
-    case WILD_AREA_ROCKS:
-        numMon = ROCK_WILD_COUNT;
-        break;
-    }
-
-    for (i = 0; i < numMon; i++)
-    {
-        if (wildMon[i].species == species && wildMon[i].maxLevel > maxLevel)
-            maxLevel = wildMon[i].maxLevel;
-    }
-
-    return maxLevel;
-}
 
 #ifdef BUGFIX
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, u8 type, u16 ability, u8 *monIndex, u32 size)
